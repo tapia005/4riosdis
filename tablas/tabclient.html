@@ -1,0 +1,63 @@
+<?php 
+ $conn = mysqli_connect('localhost','root','','4rios');
+  $query = "select * from clientes";
+  $resultado = mysqli_query($conn,$query);
+?> 
+ <!DOCTYPE html>
+ <html lang="en">
+    <?php require '../header/heaadmin.php' ?>
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>tabcliente</title>
+     <link rel="stylesheet" type="text/css" href="../css/tabla.css">
+
+ </head>
+ 
+ <body>
+     <main class="table" id="customers_table">
+         <section class="table__header">
+             <h1>CLIENTES</h1>
+             <div class="input-group">
+                 <input type="search" placeholder="Search Data...">
+                 <img src="images/search.png" alt="">
+             </div>
+         </section>
+         <section class="table__body">
+             <table>
+                 <thead>
+                     <tr>
+                         <th> CODIGO <span class="icon-arrow">&UpArrow;</span></th>
+                         <th> NOMBRE <span class="icon-arrow">&UpArrow;</span></th>
+                         <th> APELLIDO <span class="icon-arrow">&UpArrow;</span></th>
+                         <th>  RUC<span class="icon-arrow">&UpArrow;</span></th>
+                         <th> TELEFONO <span class="icon-arrow">&UpArrow;</span></th>
+                         <th> EDITAR <span class="icon-arrow">&UpArrow;</span></th>
+                         <th> ELIMINAR <span class="icon-arrow">&UpArrow;</span></th>
+                         <th> VER <span class="icon-arrow">&UpArrow;</span></th>
+                     </tr>
+                 </thead>
+                 <?php foreach($resultado as $row){ ?>
+                 <tbody >
+                     <tr>
+                         <td> <?php echo $row['codigo']; ?> </td>
+                         <td> <?php echo $row['nombre']; ?></td>
+                         <td> <?php echo $row['apellido']; ?>  </td>
+                         <td> <?php echo $row['ruc']; ?></td>
+                         <td> <?php echo $row['telefono1']; ?> </td>
+                         <td> <a href="../eliminareditar/editclient.php?id=<?php echo $row['id']?>"><img src="images/edit.png" alt=""> </a>   </td>
+                         <td> <a class="boo1" href="../eliminareditar/eliminarclient.php?id=<?php echo $row['id']?>"><img src="images/eliminar.png" alt=""> </a> </td>
+                         <td> <a class="boo1" href="../eliminareditar/verclient.php?id=<?php echo $row['id']?>"><img src="images/ver.png" alt=""> </a> </td>
+                     </tr>
+                 </tbody>
+                 <?php }?>
+             </table>
+         </section>
+     </main>
+     <script src="../js/tab.js"></script>
+ 
+ </body>
+
+ </html>
+ 
